@@ -1,5 +1,6 @@
 import React, { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
+import "./index.css";
 
 
 const pizzaData = [
@@ -48,13 +49,14 @@ const pizzaData = [
 ];
 
 
-
-
 function Menu() {
   return (
-    <main>
+    <main className="menu">
       <h2>Our menu</h2>
       <Pizza/>
+      <Pizza/>
+      <Pizza/>
+      <Footer/>
     </main>
   );
 }
@@ -62,7 +64,7 @@ function Menu() {
 
 function Pizza (){
   return (
-    <div>
+    <div className="pizza">
      <img src="pizzas/spinaci.jpg" alt="Pizza spinaci" />
      <h3>Pizza Spinaci</h3>
      <p>tomato, mozarella, spinaci, and ricotta cheese</p>
@@ -77,15 +79,20 @@ function Footer() {
   const openHours =12;
   const closedHour = 22;
   const isOpen = hour >= openHours && hour < closedHour;
+  const message = isOpen ? "We are open" : "We are closed";
+
+  
   return (
     <div>
-      <h1>Hello World</h1>
+      <h1>
+        {message}
+      </h1>
     </div>
   );
 }
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <Menu />
   </React.StrictMode>
 );
