@@ -49,7 +49,34 @@ const pizzaData = [
 
 
 
-function App() {
+
+function Menu() {
+  return (
+    <main>
+      <h2>Our menu</h2>
+      <Pizza/>
+    </main>
+  );
+}
+
+
+function Pizza (){
+  return (
+    <div>
+     <img src="pizzas/spinaci.jpg" alt="Pizza spinaci" />
+     <h3>Pizza Spinaci</h3>
+     <p>tomato, mozarella, spinaci, and ricotta cheese</p>
+    </div>
+  );
+}
+
+
+
+function Footer() {
+  const hour = new Date().getHours();
+  const openHours =12;
+  const closedHour = 22;
+  const isOpen = hour >= openHours && hour < closedHour;
   return (
     <div>
       <h1>Hello World</h1>
