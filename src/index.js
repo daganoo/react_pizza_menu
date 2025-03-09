@@ -2,7 +2,6 @@ import React, { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 
-
 const pizzaData = [
   {
     name: "Focaccia",
@@ -49,26 +48,34 @@ const pizzaData = [
 ];
 
 
+
 function Menu() {
+  
   return (
     <main className="menu">
       <h2>Our menu</h2>
-      <Pizza/>
-      <Pizza/>
-      <Pizza/>
+      <ul className="pizzas">
+        {pizzaData.map((pizza) => (
+          <Pizza pizzaObj={pizza} key={pizza.name} />
+        ))}
+      </ul>
+      <button className="btn">Order now</button>
       <Footer/>
+      
     </main>
   );
 }
 
-
-function Pizza (){
+function Pizza (props){
   return (
-    <div className="pizza">
-     <img src="pizzas/spinaci.jpg" alt="Pizza spinaci" />
-     <h3>Pizza Spinaci</h3>
-     <p>tomato, mozarella, spinaci, and ricotta cheese</p>
-    </div>
+    
+    <li className="pizza">
+      <img src={props.pizzaObj.photoName} alt={pizzaData.name} />
+      <h3>{props.pizzaObj.name}</h3>
+      <p>{props.pizzaObj.ingredients}</p>
+      <p>{props.pizzaObj.price}$</p>
+      {(props.pizzaObj.soldOut)? <h1 style={{color:"red"}}>Sold Out!</h1>:null}
+    </li>
   );
 }
 
@@ -77,9 +84,9 @@ function Pizza (){
 function Footer() {
   const hour = new Date().getHours();
   const openHours =12;
-  const closedHour = 22;
+  const closedHour = 23;
   const isOpen = hour >= openHours && hour < closedHour;
-  const message = isOpen ? "We are open" : "We are closed";
+  const message = isOpen ? "We are open till "+closedHour+":00" : "We are closed now, we open at "+openHours+":00";
 
   
   return (
