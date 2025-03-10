@@ -47,10 +47,7 @@ const pizzaData = [
   },
 ];
 
-
-
 function Menu() {
-  
   return (
     <main className="menu">
       <h2>Our menu</h2>
@@ -59,41 +56,41 @@ function Menu() {
           <Pizza pizzaObj={pizza} key={pizza.name} />
         ))}
       </ul>
-      <button className="btn">Order now</button>
-      <Footer/>
-      
+
+      <Footer />
     </main>
   );
 }
 
-function Pizza (props){
+function Pizza(props) {
   return (
-    
     <li className="pizza">
       <img src={props.pizzaObj.photoName} alt={pizzaData.name} />
       <h3>{props.pizzaObj.name}</h3>
       <p>{props.pizzaObj.ingredients}</p>
       <p>{props.pizzaObj.price}$</p>
-      {(props.pizzaObj.soldOut)? <h1 style={{color:"red"}}>Sold Out!</h1>:null}
+      {props.pizzaObj.soldOut ? (
+        <h1 style={{ color: "red" }}>Sold Out!</h1>
+      ) : null}
     </li>
   );
 }
 
-
-
 function Footer() {
   const hour = new Date().getHours();
-  const openHours =12;
-  const closedHour = 23;
+  const openHours = 12;
+  const closedHour = 22;
   const isOpen = hour >= openHours && hour < closedHour;
-  const message = isOpen ? "We are open till "+closedHour+":00" : "We are closed now, we open at "+openHours+":00";
+  const message = isOpen
+    ? "We are open till " + closedHour + ":00"
+    : "We are closed now, we open at " + openHours + ":00";
 
-  
   return (
-    <div>
-      <h1>
-        {message}
-      </h1>
+    <div className="footer">
+      <div className="order">
+        <h1>{message}</h1>
+        {isOpen ? <button className="btn">Order now</button> : null}
+      </div>
     </div>
   );
 }
